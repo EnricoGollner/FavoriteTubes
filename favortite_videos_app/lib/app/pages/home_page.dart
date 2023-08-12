@@ -1,3 +1,4 @@
+import 'package:favortite_videos_app/delegates/data_search.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,14 +8,33 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset(
-          "assets/youtube_logo.png",
-          width: 200,
+        title: SizedBox(
+          height: 25,
+          child: Image.asset("assets/youtube_logo.png"),
         ),
+        elevation: 0,
+        backgroundColor: Colors.black87,
+        actions: [
+          const Align(
+            alignment: Alignment.center,
+            child: Text("0"),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.star),
+          ),
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: DataSearch(),
+              );
+            },
+            icon: const Icon(Icons.search),
+          )
+        ],
       ),
-      body: const Center(
-        child: Text('Hello World!'),
-      ),
+      body: Container(),
     );
   }
 }
