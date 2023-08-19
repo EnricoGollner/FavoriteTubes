@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DataSearch extends SearchDelegate<String> {
-  // Widgets/Botoes que fica a direita na SearchBar (retorna lista de Widgets que serao posicionados)
+  // para search delegate está sendo fornecido o parâmetro genérico String <String>
+  // Isso significa que a classe SearchDelegate está sendo parametrizada com um tipo String
+
+  // Widgets/Botoes que ficam a direita na SearchBar (retorna lista de Widgets que serao posicionados)
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -37,14 +40,15 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
+    // Por estarmos pedindo para redesenhar a tela com o close, sendo que já estamos dentro de um build, ou seja, desenhando, teremos que dar um mini delay:
+    WidgetsBinding.instance.addPostFrameCallback((_) => close(context, query));
+
     return Container();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    if (query.isEmpty) {
-      return Container();
-    }
+    if (query.isEmpty) return Container();
 
     return FutureBuilder<List>(
       future: sugestions(query),
@@ -60,7 +64,7 @@ class DataSearch extends SearchDelegate<String> {
               title: Text(snapshot.data![index]),
               leading: const Icon(Icons.play_arrow),
               onTap: () {
-                query = snapshot.data![index];
+                close(context, snapshot.data![index]);
               },
             );
           },

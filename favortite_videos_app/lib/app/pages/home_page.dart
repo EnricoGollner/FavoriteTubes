@@ -24,11 +24,10 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.star),
           ),
           IconButton(
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: DataSearch(),
-              );
+            onPressed: () async {
+              String? result =
+                  await showSearch(context: context, delegate: DataSearch());
+              print(result ?? '');
             },
             icon: const Icon(Icons.search),
           )
