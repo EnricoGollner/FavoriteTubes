@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
     final VideosBloc videosBloc = BlocProvider.getBloc<VideosBloc>();
 
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: AppBar(
         title: SizedBox(
           height: 25,
