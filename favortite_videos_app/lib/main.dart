@@ -1,12 +1,13 @@
-import 'package:favortite_videos_app/app/api.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:favortite_videos_app/app/blocs/videos_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'app/main_app.dart';
 
 void main() {
-  Api api = Api();
-
-  api.search("gt");
-
-  runApp(const MainApp());
+  runApp(BlocProvider(
+    blocs: [Bloc((i) => VideosBloc())],
+    dependencies: const [],
+    child: const MainApp(),
+  ));
 }

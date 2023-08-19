@@ -29,7 +29,7 @@ class DataSearch extends SearchDelegate<String> {
     return IconButton(
       onPressed: () {
         // Sair da search
-        close(context, "");
+        close(context, '');
       },
       icon: AnimatedIcon(
         icon: AnimatedIcons.menu_arrow,
@@ -38,10 +38,14 @@ class DataSearch extends SearchDelegate<String> {
     );
   }
 
+// buildResults é para mostrar os resultados na própria tela de search
   @override
   Widget buildResults(BuildContext context) {
     // Por estarmos pedindo para redesenhar a tela com o close, sendo que já estamos dentro de um build, ou seja, desenhando, teremos que dar um mini delay:
     WidgetsBinding.instance.addPostFrameCallback((_) => close(context, query));
+
+// backup:
+    // Future.delayed(Duration.zero).then((_)=>close(context, ''));
 
     return Container();
   }

@@ -1,10 +1,14 @@
 class VideoModel {
-  final String? id;
-  final String? title;
-  final String? thumb;
-  final String? channel;
+  final String id;
+  final String title;
+  final String thumb;
+  final String channel;
 
-  VideoModel({this.id, this.title, this.thumb, this.channel});
+  VideoModel(
+      {required this.id,
+      required this.title,
+      required this.thumb,
+      required this.channel});
 
   factory VideoModel.fromJson(Map<String, dynamic> json) {
     return VideoModel(
