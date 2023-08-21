@@ -55,6 +55,7 @@ class VideoTile extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(Icons.star_border),
                 color: Colors.blueAccent,
+                iconSize: 27,
               ),
             ],
           )
