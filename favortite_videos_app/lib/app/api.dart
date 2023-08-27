@@ -4,11 +4,7 @@ import 'package:favortite_videos_app/app/data/http/http_client.dart';
 import 'package:favortite_videos_app/app/data/models/video_model.dart';
 import 'package:http/http.dart' as http;
 
-const API_KEY = "AIzaSyAiutmczPzLoTPor6YZ5tVaMcua8gP5q5s";
-/*
-"https://www.googleapis.com/youtube/v3/search?part=snippet&q=$_search&type=video&key=$API_KEY&maxResults=10&pageToken=$_nextToken"
-
-*/
+const apiKey = "your api key";
 
 class Api {
   final httpClient = HttpClient();
@@ -21,7 +17,7 @@ class Api {
 
     http.Response response = await httpClient.get(
         url:
-            "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$search&type=video&key=$API_KEY&maxResults=10");
+            "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$search&type=video&key=$apiKey&maxResults=10");
 
     return decode(response);
   }
@@ -29,7 +25,7 @@ class Api {
   Future<List<VideoModel>> nextPage() async {
     http.Response response = await httpClient.get(
         url:
-            "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$search&type=video&key=$API_KEY&maxResults=10&pageToken=$_nextToken");
+            "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$_search&type=video&key=$apiKey&maxResults=10&pageToken=$_nextToken");
 
     return decode(response);
   }
@@ -48,7 +44,7 @@ class Api {
 
       return videos;
     } else {
-      throw Exception("Failed to load videos");
+      throw Exception("Failed to load videos ${response.statusCode}");
     }
   }
 }

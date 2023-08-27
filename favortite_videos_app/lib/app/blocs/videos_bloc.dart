@@ -16,7 +16,7 @@ class VideosBloc implements BlocBase {
       StreamController<List<VideoModel>>();
   Stream get outVideos => _videosStreamController.stream;
 
-  final _searchController = StreamController<String>();
+  final _searchController = StreamController<String?>();
   Sink get inSearch => _searchController.sink;
 
   VideosBloc() {
@@ -25,9 +25,12 @@ class VideosBloc implements BlocBase {
     _searchController.stream.listen(_search);
   }
 
-  void _search(String search) async {
-    videos = await api.search(search);
-
+  void _search(String? search) async {
+    if (search != null) {
+      videos = await api.search(search);
+    } else {
+      videos = videos! + await api.nextPage();
+    }
     _videosStreamController.sink.add(videos);
   }
 
