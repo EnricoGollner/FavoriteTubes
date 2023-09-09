@@ -71,6 +71,8 @@ class HomePage extends StatelessWidget {
                       color: Colors.redAccent,
                     ),
                   );
+                } else {
+                  return Container();
                 }
               },
             );

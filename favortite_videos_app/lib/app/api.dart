@@ -4,7 +4,7 @@ import 'package:favortite_videos_app/app/data/http/http_client.dart';
 import 'package:favortite_videos_app/app/data/models/video_model.dart';
 import 'package:http/http.dart' as http;
 
-const apiKey = "AIzaSyBgFMU6atNgavrkSClXjVtpBIT0FwfzcsA";
+const apiKey = "* YOUR API KEY *";
 
 class Api {
   final httpClient = HttpClient();
