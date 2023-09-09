@@ -2,6 +2,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:favortite_videos_app/app/blocs/favorites_bloc.dart';
 import 'package:favortite_videos_app/app/blocs/videos_bloc.dart';
 import 'package:favortite_videos_app/app/data/models/video_model.dart';
+import 'package:favortite_videos_app/app/pages/favorites_page.dart';
 import 'package:favortite_videos_app/delegates/data_search.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,11 @@ class HomePage extends StatelessWidget {
                 }),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const FavoritesPage(),
+              ));
+            },
             icon: const Icon(Icons.star),
           ),
           IconButton(
@@ -66,18 +71,11 @@ class HomePage extends StatelessWidget {
                       color: Colors.redAccent,
                     ),
                   );
-                } else {
-                  return Center(
-                    child: Text('Nada pesquisado'),
-                  );
                 }
               },
             );
           } else {
-            return const Center(
-                child: CircularProgressIndicator(
-              color: Colors.redAccent,
-            ));
+            return const Center(child: Icon(Icons.search));
           }
         },
       ),
