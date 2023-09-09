@@ -4,13 +4,13 @@ import 'dart:ui';
 
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:favortite_videos_app/app/data/models/video_model.dart';
+import 'package:rxdart/subjects.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoriteBloc implements BlocBase {
   Map<String, VideoModel> _favorites = {};
 
-  final StreamController<Map<String, VideoModel>> _favController =
-      StreamController.broadcast();
+  final _favController = BehaviorSubject<Map<String, VideoModel>>.seeded({});
   Stream<Map<String, VideoModel>> get outFav => _favController.stream;
 
   FavoriteBloc() {
